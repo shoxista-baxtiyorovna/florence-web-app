@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #fdfbf7;
+  --color-foreground: #1a3c2a;
+  --color-primary: #2c5940;
+  --color-primary-light: #417557;
+  --color-secondary: #f4d8d4;
+  --color-accent: #b86a6a;
+  --color-card-bg: #ffffff;
+  --color-border: #f0ebe1;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-elegant: "Playfair Display", "Times New Roman", serif;
+}
+
+:root {
+  /* Florence Luxury Palette */
+  --background: #fdfbf7;
+  /* Soft Beige / Ivory */
+  --foreground: #1a3c2a;
+  /* Deep Forest Green (Text) */
+  --primary: #2c5940;
+  /* Medium Forest Green (Hero) */
+  --primary-light: #417557;
+  /* Lighter Green */
+  --secondary: #f4d8d4;
+  /* Pastel Pink (Accents/Nav) */
+  --accent: #b86a6a;
+  /* Deep Dusty Rose Pink (Buttons/Highlights) */
+  --card-bg: #ffffff;
+  --border: #f0ebe1;
+
+  --font-geist-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-geist-mono: "Fira Code", monospace;
+  --font-elegant: "Playfair Display", "Times New Roman", serif;
+}
+
+body {
+  color: var(--foreground);
+  background-color: var(--background);
+  font-family: var(--font-geist-sans);
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Graceful & Elegant Button Effect - Shape Shifting */
+.rounded-petal {
+  border-radius: 8px;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 4px 14px 0 rgba(184, 106, 106, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.rounded-petal::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.rounded-petal:hover {
+  transform: translateY(-3px);
+  /* Shift shape to be more organic on hover */
+  border-radius: 20px 8px 20px 8px;
+  box-shadow: 0 8px 24px rgba(184, 106, 106, 0.5);
+}
+
+.rounded-petal:hover::after {
+  opacity: 1;
+}
+
+.font-elegant {
+  font-family: var(--font-elegant);
+}
