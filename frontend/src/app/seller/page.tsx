@@ -34,7 +34,7 @@ export default function SellerDashboard() {
 
         const fetchShop = async () => {
             try {
-                const res = await fetch("http://localhost:8000/api/shops/", {
+                const res = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/shops/", {
                     headers: { "Authorization": `Bearer ${token}` }
                 });
                 if (res.ok) {
@@ -63,7 +63,7 @@ export default function SellerDashboard() {
 
         try {
             const method = shopId ? "PUT" : "POST";
-            const url = shopId ? `http://localhost:8000/api/shops/${shopId}` : "http://localhost:8000/api/shops/";
+            const url = shopId ? `${process.env.NEXT_PUBLIC_API_URL}/api/shops/${shopId}` : process.env.NEXT_PUBLIC_API_URL + "/api/shops/";
 
             const res = await fetch(url, {
                 method,
@@ -98,7 +98,7 @@ export default function SellerDashboard() {
         setIsAddingBranch(true);
 
         try {
-            const res = await fetch(`http://localhost:8000/api/shops/${shopId}/branches`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/shops/${shopId}/branches`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -128,7 +128,7 @@ export default function SellerDashboard() {
     const handleToggleVacation = async (branchId: number, currentState: boolean) => {
         if (!shopId) return;
         try {
-            const res = await fetch(`http://localhost:8000/api/shops/${shopId}/branches/${branchId}/toggle?is_active=${!currentState}`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/shops/${shopId}/branches/${branchId}/toggle?is_active=${!currentState}`, {
                 method: "PUT",
                 headers: { "Authorization": `Bearer ${token}` }
             });

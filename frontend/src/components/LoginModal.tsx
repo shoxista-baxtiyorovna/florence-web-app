@@ -26,7 +26,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
         (window as any).onTelegramAuth = async (tgUser: any) => {
             try {
                 setLoading(true);
-                const res = await fetch("http://localhost:8000/api/auth/telegram", {
+                const res = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/auth/telegram", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ ...tgUser, requested_role: role }),
@@ -75,7 +75,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
                 formData.append("username", email);
                 formData.append("password", password);
 
-                const res = await fetch("http://localhost:8000/api/auth/token", {
+                const res = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/auth/token", {
                     method: "POST",
                     headers: { "Content-Type": "application/x-www-form-urlencoded" },
                     body: formData,
@@ -98,7 +98,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
                 onClose();
             } else {
                 // Register
-                const res = await fetch(`http://localhost:8000/api/auth/register?role=${role}`, {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/register?role=${role}`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ email, password }),

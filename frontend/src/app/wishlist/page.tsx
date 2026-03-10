@@ -27,7 +27,7 @@ export default function WishlistPage() {
         const fetchProductsLocal = async () => {
             setLoading(true);
             try {
-                const res = await fetch("http://localhost:8000/api/products/");
+                const res = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/products/");
                 if (res.ok) {
                     const allProducts = await res.json();
                     const liked = allProducts.filter((p: any) => likedProductIds.has(p.id));
@@ -41,7 +41,7 @@ export default function WishlistPage() {
         };
 
         if (isAuthenticated && token) {
-            fetch("http://localhost:8000/api/auth/wishlist", {
+            fetch(process.env.NEXT_PUBLIC_API_URL + "/api/auth/wishlist", {
                 headers: { "Authorization": `Bearer ${token}` }
             })
                 .then(res => res.json())

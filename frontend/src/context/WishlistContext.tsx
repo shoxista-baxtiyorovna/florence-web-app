@@ -40,7 +40,7 @@ export const WishlistProvider = ({ children }: { children: ReactNode }) => {
     const fetchWishlist = async () => {
         if (!token) return;
         try {
-            const res = await fetch("http://localhost:8000/api/auth/wishlist", {
+            const res = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/auth/wishlist", {
                 headers: { "Authorization": `Bearer ${token}` }
             });
             if (res.ok) {
@@ -83,7 +83,7 @@ export const WishlistProvider = ({ children }: { children: ReactNode }) => {
         // Sync with backend if logged in
         if (isAuthenticated && token) {
             try {
-                const res = await fetch(`http://localhost:8000/api/products/${productId}/like`, {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products/${productId}/like`, {
                     method: "POST",
                     headers: { "Authorization": `Bearer ${token}` }
                 });

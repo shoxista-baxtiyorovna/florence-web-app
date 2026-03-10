@@ -30,7 +30,7 @@ export default function Home() {
   // Fetch products dynamically when filters change
   useEffect(() => {
     setLoading(true);
-    let url = `http://localhost:8000/api/products/?city=${encodeURIComponent(city)}`;
+    let url = `${process.env.NEXT_PUBLIC_API_URL}/api/products/?city=${encodeURIComponent(city)}`;
     if (flowerType) url += `&main_flower=${encodeURIComponent(flowerType)}`;
     if (format) url += `&format=${encodeURIComponent(format)}`;
     if (size) url += `&size=${encodeURIComponent(size)}`;

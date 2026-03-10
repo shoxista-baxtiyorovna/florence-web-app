@@ -20,7 +20,7 @@ export default function ProductDetailPage() {
 
     useEffect(() => {
         if (!id) return;
-        fetch(`http://localhost:8000/api/products/${id}`)
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products/${id}`)
             .then(res => res.json())
             .then(data => {
                 setProduct(data);

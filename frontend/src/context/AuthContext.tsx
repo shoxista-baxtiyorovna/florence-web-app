@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
             // If initialized inside Telegram but no token in local storage, perform silent auto-login
             if (tgUser && !storedToken) {
-                fetch("http://localhost:8000/api/auth/telegram", {
+                fetch(process.env.NEXT_PUBLIC_API_URL + "/api/auth/telegram", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({

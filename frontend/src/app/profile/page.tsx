@@ -48,7 +48,7 @@ export default function BuyerProfile() {
     const handleUpdateProfile = async () => {
         setIsUpdating(true);
         try {
-            const res = await fetch("http://localhost:8000/api/auth/me", {
+            const res = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/auth/me", {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -72,7 +72,7 @@ export default function BuyerProfile() {
 
     useEffect(() => {
         if (activeTab === "orders" && token) {
-            fetch("http://localhost:8000/api/orders/", {
+            fetch(process.env.NEXT_PUBLIC_API_URL + "/api/orders/", {
                 headers: { "Authorization": `Bearer ${token}` }
             })
                 .then(res => res.json())
@@ -84,7 +84,7 @@ export default function BuyerProfile() {
     const handleCancelOrder = async (orderId: number) => {
         if (!confirm("Are you sure you want to cancel this order?")) return;
         try {
-            const res = await fetch(`http://localhost:8000/api/orders/${orderId}/cancel`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/orders/${orderId}/cancel`, {
                 method: "POST",
                 headers: { "Authorization": `Bearer ${token}` }
             });

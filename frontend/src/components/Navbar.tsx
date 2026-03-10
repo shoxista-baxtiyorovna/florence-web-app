@@ -29,7 +29,7 @@ export default function Navbar() {
         if (savedCity) setCity(savedCity);
 
         // Pre-fetch all products for instant localized frontend search
-        fetch("http://localhost:8000/api/products/")
+        fetch(process.env.NEXT_PUBLIC_API_URL + "/api/products/")
             .then(res => res.json())
             .then(data => {
                 if (Array.isArray(data)) setAllProducts(data);
